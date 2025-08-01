@@ -78,9 +78,58 @@ public class BitOperator {
 
     }
 
+
+    public static boolean isPowerOf2 (int n){
+        // ---------check number is a power of 2 or not -----------
+        if (n>0) {
+            // in power of 2 numbers ==> one bit is set to 1
+            return (n & (n-1)) == 0;    // check 8 (1000) and 7 (0111) == 0 or not 
+        }else {
+            return false;
+        }
+    }
+
+    public static int  count1s (int n){
+        int count = 0;
+        while (n != 0) {
+            if ((n & 1) == 1) {
+                count++;
+            }
+            n = n >> 1;
+        }
+        return count;
+
+    }
+
+    public static String decimalToBinary (int n){
+        String result = "";
+
+        while (n>0) {
+            result = (n % 2) + result;
+            n = n/2;
+        }
+
+        return result;
+    }
+
+    public static int binaryToDecimal(String s){
+        String[] sArr = s.split("");
+        int decimal = 0;
+
+        for (int i = 0; i < sArr.length; i++) {
+            if (Integer.parseInt(sArr[i]) == 1) {
+                decimal +=  Math.pow(2, sArr.length - 1- i);
+                
+            }
+        }
+
+        return decimal;
+    }
+
     public static void main(String[] args) {
+        System.err.println("");
 
-
+        System.out.println(binaryToDecimal("1000"));
 
 
 
