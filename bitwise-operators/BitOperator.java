@@ -1,14 +1,89 @@
 
 
+
+
 public class BitOperator {
+
+    public static void getBit (){
+        // -------------------get bit-------------
+        // 1. bit mask: 1<<i
+        // 2. operation: And
+        int n = 5;
+        int pos = 2;
+        int bitMask = 1<<pos;
+        if ((bitMask & n) == 0) {
+            System.out.println("Bit was zero");
+        } else{
+            System.out.println("Bit was one");
+        }
+    }
+
+
+
+    public static void setBit(){
+        // -------------------set bit-------------
+        // 1. bit mask: 1<<i
+        // 2. operation: OR
+
+        int n = 5; // 0101
+        int pos = 2;
+        int bitMask = 1<<pos;
+
+        int newNumber = bitMask | n;
+        System.out.println(newNumber);
+    }
+
+
+    public static void clearBit (){
+        // ----------cleat Bit-----------
+        // Bit Mask = 1<<i
+        // operation = AND with NOT
+
+        int n = 5;
+         int pos = 2;
+         int bitMask = 1<<pos;
+         int notBitMask = ~bitMask;
+
+         int newNumber  = notBitMask & n;
+         System.out.println(newNumber);
+    }
+
+    public static void updateBit (){
+        // -------------update Bit ------------------
+
+        int input = 1;
+
+        int n = 5;
+        int pos = 2;
+        int bitMask = 1<<pos;
+
+        if (input == 0) {
+            // -----for 0--------
+            // Bit Mask = 1<<i
+            // operation = AND with NOT
+            int notBitMask = ~bitMask;
+            
+            int newNumber  = notBitMask & n;
+            System.out.println(newNumber);
+
+
+        }else if (input == 1) {
+            // -----for 1--------
+            // Bit Mask = 1<<i
+            // operation = OR
+            
+            int newNumber = bitMask | n;
+            System.out.println(newNumber);
+        }
+
+    }
+
     public static void main(String[] args) {
-        // ---------Check specific bit ------------
 
-        byte b1 = (byte) 0b10101010;  // Example byte
-        int bitPosition = 3; // we can take this input from user
 
-        int bit = (b1 >> bitPosition) & 1;
-        // System.out.println(Integer.toBinaryString(bit));
+
+
+
 
         // ---------- Check n consecutive bits -------------
 
@@ -21,6 +96,11 @@ public class BitOperator {
         // System.out.println(Integer.toBinaryString(consecutiveBits));
 
 
+
+
+        
+
+
        // ------------------- how to make a specific bit 1, 0 hai to 1 ho aur 1 hai to 1 rahe -------------
        int b3 = 0b10101010;
        int changePos1 = 2;
@@ -30,7 +110,7 @@ public class BitOperator {
 
 
 
-    
+
        
 
        // ------------------- how to make a specific bit 0, 0 hai to 0 rahe aur 1 hai to 0 ho -------------  
