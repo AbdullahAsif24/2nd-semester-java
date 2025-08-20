@@ -5,13 +5,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-public class Server{
+
+public class Server {
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(8888);
 
-
         Socket socket = serverSocket.accept();
-
 
         BufferedReader inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter outputToClient = new PrintWriter(socket.getOutputStream(), true);
@@ -22,10 +21,12 @@ public class Server{
         while (true) {
             msgFromClient = inputFromClient.readLine();
 
-            if (msgFromClient.equalsIgnoreCase("quit")) break;
+            if (msgFromClient.equalsIgnoreCase("quit"))
+                break;
 
-            else if (msgFromClient.split(" ")[0].equalsIgnoreCase("files")){
-                File folder  = new File("E:\\UBIT\\2nd semester\\OOP-Java\\TCP-connection\\file-commands-client-server\\files");
+            else if (msgFromClient.split(" ")[0].equalsIgnoreCase("files")) {
+                File folder = new File(
+                        "E:\\UBIT\\2nd semester\\OOP-Java\\TCP-connection\\file-commands-client-server\\files");
 
                 File[] filesList = folder.listFiles();
                 String filesNamesList = "";
@@ -37,20 +38,20 @@ public class Server{
                 msgToClient = filesNamesList;
             }
 
-            else if (msgFromClient.split(" ")[0].equalsIgnoreCase("get")){
-                String fileName =  msgFromClient.split(" ")[1];
+            else if (msgFromClient.split(" ")[0].equalsIgnoreCase("get")) {
+                String fileName = msgFromClient.split(" ")[1];
 
-                BufferedReader br = new BufferedReader(new FileReader("E:\\UBIT\\2nd semester\\OOP-Java\\TCP-connection\\file-commands-client-server\\files\\"+fileName));
-                String line ="";
+                BufferedReader br = new BufferedReader(new FileReader(
+                        "E:\\UBIT\\2nd semester\\OOP-Java\\TCP-connection\\file-commands-client-server\\files\\"
+                                + fileName));
+                String line = "";
                 while ((line = br.readLine()) != null) {
-                
-                if (!line.isEmpty()) {
-                    msgToClient += line + "\n";
+
+                    if (!line.isEmpty()) {
+                        msgToClient += line + "\n";
+                    }
                 }
             }
-            }
-            
-             
 
             System.out.println("Client: " + msgFromClient);
 
@@ -63,4 +64,4 @@ public class Server{
         serverSocket.close();
         System.out.println("Server Closed");
     }
-    }
+}
