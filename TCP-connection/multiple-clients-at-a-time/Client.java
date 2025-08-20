@@ -23,7 +23,7 @@ public class Client {
 
             String line;
             while ((line = inputFromServer.readLine()) != null) {
-                if (line.equals("END")) break;   // stop reading here
+                if (line.equalsIgnoreCase("END")) break;   // stop reading here
                 msgFromServer += line + "\n";
             }
             if (msgFromServer.equalsIgnoreCase("quit")) break;

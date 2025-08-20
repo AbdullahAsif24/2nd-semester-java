@@ -56,6 +56,7 @@ public class Server {
             System.out.println("Client: " + msgFromClient);
 
             outputToClient.println(msgToClient);
+            outputToClient.println("End");
             msgToClient = "";
 
         }

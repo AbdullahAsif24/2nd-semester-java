@@ -22,8 +22,8 @@ public class Client {
             if (msgToServer.equalsIgnoreCase("quit")) break;
 
             String line;
-            while (!(line = inputFromServer.readLine()).equals("")) {
-                
+            while ((line = inputFromServer.readLine()) != null) {
+                if (line.equalsIgnoreCase("END")) break;   // stop reading here
                 msgFromServer += line + "\n";
             }
             if (msgFromServer.equalsIgnoreCase("quit")) break;
