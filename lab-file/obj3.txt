@@ -1,0 +1,4 @@
+1. linear search code
+2. selection sort code
+3.  
+4. linked list class in which, make array of this class objs and add data and nextIndex(so it is logically sorted), print physically sorted
