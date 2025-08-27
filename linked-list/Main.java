@@ -7,6 +7,8 @@ public class Main {
         llArr.add(new LinkedList(1, 3));  // idx1
         llArr.add(new LinkedList(4, -1)); // idx2
         llArr.add(new LinkedList(2, 0));  // idx3
+        // 0 curr
+        // 3 is prev
 
         LinkedList.add(llArr, 5, 2);
 
@@ -25,6 +27,9 @@ public class Main {
                 break;
             }
         }
+
+        // can delete after finding head 
+        LinkedList.delete(llArr, head, 3);
 
         // print logically
         for (int i = head; i != -1; i = llArr.get(i).ni) {
@@ -50,5 +55,26 @@ class LinkedList {
         arr.get(prevIdx).ni = newIndex;
     }
 
+    static int delete(ArrayList<LinkedList> arr, int head, int key){
+        int currIdx = head;
+        int prevIdx = -1;
+
+        while (currIdx != -1 && arr.get(currIdx).data != key) {
+            prevIdx = currIdx;
+            currIdx = arr.get(currIdx).ni;
+        }
+
+        if (currIdx == -1) {
+            return head; // not found
+        }
+
+        if (prevIdx == -1) {
+            head = arr.get(head).ni; // delete head
+        }else {
+            arr.get(prevIdx).ni = arr.get(currIdx).ni; // bypass current
+        }
+
+        return head;
+    }
     
 }
