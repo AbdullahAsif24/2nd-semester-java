@@ -7,34 +7,19 @@ public class Main {
         llArr.add(new LinkedList(1, 3));  // idx1
         llArr.add(new LinkedList(4, -1)); // idx2
         llArr.add(new LinkedList(2, 0));  // idx3
-        // 0 curr
-        // 3 is prev
+        
 
+        // add element
         LinkedList.add(llArr, 5, 2);
 
         // head finder
-        boolean[] headFinder = new boolean[llArr.size()];
-        for (int i = 0; i < llArr.size(); i++) {
-            if (llArr.get(i).ni != -1) {
-                headFinder[llArr.get(i).ni] = true;
-            }
-        }
-
-        int head = -1;
-        for (int i = 0; i < headFinder.length; i++) {
-            if (!headFinder[i]) {
-                head = i;
-                break;
-            }
-        }
-
+        int head = LinkedList.headFinder(llArr);
+        
         // can delete after finding head 
-        LinkedList.delete(llArr, head, 3);
+        head = LinkedList.delete(llArr, head, 1);
 
         // print logically
-        for (int i = head; i != -1; i = llArr.get(i).ni) {
-            System.out.println(llArr.get(i).data);
-        }
+        LinkedList.printSorted(llArr, head);
     }
 }
 
@@ -47,6 +32,27 @@ class LinkedList {
         ni = n;
     }
 
+    // find list head index
+    static int headFinder(ArrayList<LinkedList> arr){
+        boolean[] headFind = new boolean[arr.size()];
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).ni != -1) {
+                headFind[arr.get(i).ni] = true;
+            }
+        }
+
+        int head = -1;
+        for (int i = 0; i < headFind.length; i++) {
+            if (!headFind[i]) {
+                head = i;
+                break;
+            }
+        }
+
+        return head;
+    }
+
+    // add element function
     static void add(ArrayList<LinkedList> arr, int number, int prevIdx) {
         LinkedList newNode = new LinkedList(number, arr.get(prevIdx).ni);
         arr.add(newNode);
@@ -55,6 +61,7 @@ class LinkedList {
         arr.get(prevIdx).ni = newIndex;
     }
 
+    // delete element
     static int delete(ArrayList<LinkedList> arr, int head, int key){
         int currIdx = head;
         int prevIdx = -1;
@@ -75,6 +82,13 @@ class LinkedList {
         }
 
         return head;
+    }
+
+    // print data in sorted order
+    static void printSorted(ArrayList<LinkedList> arr, int head){
+        for (int i = head; i != -1; i = arr.get(i).ni) {
+            System.out.println(arr.get(i).data);
+        }
     }
     
 }
