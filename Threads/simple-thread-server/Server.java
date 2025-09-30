@@ -17,7 +17,7 @@ public class Server {
     }
 }
 
-class ClientHandler extends Thread {
+class ClientHandler extends Thread  {
     private Socket socket;
 
     ClientHandler(Socket socket) {
