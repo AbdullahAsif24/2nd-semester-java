@@ -1,12 +1,16 @@
 public class HammingAlgo {
     public static void main(String[] args) {
         int[] inp = { 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0 };
-        int tot = totalParityBit(inp);
+        // int tot = totalParityBit(inp);
 
-        int[] msgBit = {0,	1,	1,	0,	0,	1,	1,	0,	0,	1,	1,	0,	1,	0,	1,	0,	0};
-        int error = bitsChecker(msgBit);
+        // int[] msgBit = { 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0 };
+        // int error = bitsChecker(msgBit);
+        // System.out.println(error);
 
-        System.out.println(error);
+        int[] placed = paritybitPlacer(inp);
+        for (int i : placed) {
+            System.out.println(i);
+        }
 
 
     }
@@ -23,23 +27,50 @@ public class HammingAlgo {
         return r;
     }
 
-    // public static int[] paritybitPlacer(int totalparityBit, int[] inp){
-    // int lengthOfInp = inp.length;
+    public static int[] paritybitPlacer(int[] inp) {
+        int lengthOfInp = inp.length;
+        int totalparityBit = totalParityBit(inp);
 
-    // int[] placedArr = new int[totalparityBit + lengthOfInp];
+        int[] placedArr = new int[totalparityBit + lengthOfInp];
 
-    // for (int i = 0; i < placedArr.length; i++) {
+        int p = 0;
 
-    // if (i ) {
-    // placedArr[i] = inp[i];
-    // }
-    // }
-    // }
+        for (int i = 1; i < placedArr.length ; i*=2) {
+            
+            for (int j = i; j < inp.length; j++) {
+                if ((i & j) != 0) {
+                    p += inp[j - 1];
+                }
+            }
+
+            if ((p % 2) != 0 ) {
+                
+                placedArr[i-1] = 1;
+            }else {
+                
+                placedArr[i-1] = 0;
+            }
+            
+        }
+
+        int z = 0;
+
+        for (int i = 0; i < placedArr.length && z<inp.length; i++ ) {
+            if (!(i != 0) && ((i & (i - 1)) == 0)) {
+                placedArr[i] = inp[z]; 
+            }
+
+            z++;
+        }
+
+
+        return placedArr;
+    }
 
     public static int bitsChecker(int[] msgBits) {
         int lengthOfMsg = msgBits.length;
 
-        int parityBits = totalParityBit(msgBits);
+        int parityBits = (int)(Math.ceil(Math.log(lengthOfMsg) / Math.log(2))); // approximate parity count
 
         int errorPos = 0;
 
