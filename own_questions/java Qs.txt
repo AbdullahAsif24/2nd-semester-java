@@ -1,0 +1,125 @@
+🔹 Q7 – Bitwise: Convert to Binary String (Manual)
+
+Task:
+
+Write a function:
+
+String toBinary(int x)
+
+
+that returns a 32-bit binary string manually using bitwise operations (no Integer.toBinaryString allowed).
+
+Example:
+
+Input: 5
+
+Output: 00000000000000000000000000000101
+
+Use shifts and masking (>>, & 1).
+
+
+----------------------------------
+
+🔹 Q9 – File Reading + Bitwise: IP Address Mask
+
+Task:
+
+Given a file ips.txt where each line contains an IP and a subnet mask length, e.g.:
+
+192.168.1.10/24
+10.0.0.5/16
+
+
+Read each line and split into IP and mask length (e.g. 24).
+
+Convert the IP into a 32-bit integer using bitwise operations.
+
+Compute the network address by applying the mask.
+
+Print the network address back in dotted decimal form.
+
+(You don’t need to handle invalid IPs for now.)
+
+--------------------------------------------
+
+🔹 Q11 – Threads: Producer–Consumer with Blocking Queue (Concept Level)
+
+Task:
+
+Design a program where:
+
+A Producer thread:
+
+Reads lines from the console (or from a file),
+
+Puts them into a BlockingQueue<String>.
+
+A Consumer thread:
+
+Takes each line from the queue,
+
+Converts it to uppercase,
+
+Prints it.
+
+Stop condition:
+
+When Producer reads "exit", it should stop and put a special value (e.g. null or "__END__") in the queue.
+
+Consumer stops when it reads that special value.
+
+(Use ArrayBlockingQueue or LinkedBlockingQueue.)
+
+------------------------------------------
+
+
+🔹 Q12 – Date & Time + File: Simple Log Filter
+
+Task:
+
+You have a log file app.log where each line starts with a timestamp:
+
+2025-03-10T10:15:30Z User1 LOGIN
+2025-03-10T10:16:00Z User2 LOGOUT
+...
+
+
+Write a program that:
+
+Asks the user for:
+
+start timestamp
+
+end timestamp
+(e.g. 2025-03-10T10:15:00Z and 2025-03-10T10:16:00Z)
+
+Reads all lines from app.log.
+
+Prints only those lines whose timestamp is between start and end (inclusive).
+
+Use java.time (e.g. Instant or OffsetDateTime) to parse and compare times.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
