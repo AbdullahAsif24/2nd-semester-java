@@ -2,11 +2,9 @@
 public class Magic {
     public static void main(String[] args) {
         int[][] grid = {
-                { 4, 8, 6, 5, 7 },
-                { 3, 5, 7, 2, 1 },
-                { 9, 1, 2, 9, 6 },
-                { 2, 7, 6, 4, 8 },
-                { 8, 1, 6, 3, 5 }
+                {4,3,8,4},
+                {9,5,1,9},
+                {2,7,6,2}
         };
 
         System.out.println(ourFunc(grid));
@@ -41,7 +39,7 @@ public class Magic {
                     for (int j = c; j < c + 3; j++) {
                         abcArr[counter] = grid[i][j];
                         counter++;
-                    }
+                    }   
                 }
 
                 total += magicChecker(abcArr);
