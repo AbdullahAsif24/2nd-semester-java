@@ -1,4 +1,4 @@
-public class BinaryTree{
+public class BinarySearchTree{
     public static void main(String[] args) {
         Tree t = new Tree();
         t.insert(8);

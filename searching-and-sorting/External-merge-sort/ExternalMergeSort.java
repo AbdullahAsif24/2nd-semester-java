@@ -47,7 +47,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-public class MergeSort {
+public class ExternalMergeSort {
     private static String given = "E:\\UBIT\\2nd semester\\OOP-Java\\searching-and-sorting\\External-merge-sort\\GivenFile.txt";
     private static String f1 = "E:\\UBIT\\2nd semester\\OOP-Java\\searching-and-sorting\\External-merge-sort\\tempfile1.txt";
     private static String f2 = "E:\\UBIT\\2nd semester\\OOP-Java\\searching-and-sorting\\External-merge-sort\\tempfile2.txt";
@@ -102,7 +102,7 @@ public class MergeSort {
         }
         
         br.close();
-        bWriter1.close();
+        bWriter1.close();   
         bWriter2.close();
 
         return runCount;
