@@ -3,10 +3,13 @@ import java.util.Scanner;
 
 public class Bitwise_And_Hamming {
     public static void main(String[] args) {
-        ArrayList<String> l = convertToBits("ABC");
-        for (String string : l) {
-            System.out.println(string);
+        ArrayList<String> last = remaking(passToBinary(passTaker()));
+
+        for (String string : last) {
+        System.out.println(string);
         }
+
+
     }
 
     /*
@@ -50,23 +53,74 @@ public class Bitwise_And_Hamming {
      * Hamming bit using the Even Parity scheme
      */
 
-    public static String passTaker(){
+    public static String passTaker() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter pass of 8 characters");
         String pass = sc.nextLine();
-        
+
         while (pass.length() != 8) {
             System.out.println("Enter again pass of 8 characters");
-            pass = sc.nextLine();            
+            pass = sc.nextLine();
         }
 
         return pass;
     }
 
-    public static ArrayList<String> passToBinary(String pass){
+    public static ArrayList<String> passToBinary(String pass) {
         ArrayList<String> hammingcodes = convertToBits(pass);
         return hammingcodes;
+    }
+
+    // make arraylist again of containig hamming bit
+    public static ArrayList<String> remaking(ArrayList<String> pass) {
+        for (int i = 0; i < pass.size(); i++) {
+            StringBuilder str = new StringBuilder();
+            int[] arr = calculateHammingBit(pass.get(i));
+            for (int j = 0; j < arr.length; j++) {
+                str.append(arr[j]);
+            }
+            pass.set(i, str.reverse().toString());
+        }
+
+        return pass;
+    }
+
+    // calculate and place hamming bit for 8 bit string pass ascii
+    public static int[] calculateHammingBit(String bitsString) {
+        // Convert char '0'/'1' to actual integer 0/1
+        int[] dataBits = new int[bitsString.length()];
+        for (int i = 0; i < bitsString.length(); i++) {
+            dataBits[i] = bitsString.charAt(i) - '0';
+        }
+
+        // 8 data bits + 4 parity bits = 12 bits
+        int[] placedArr = new int[12];
+
+        int z = 0;
+
+        // Fill parity placeholders (positions that are powers of 2)
+        for (int pos = 1; pos <= 12; pos++) {
+            if ((pos & (pos - 1)) == 0) {
+                placedArr[pos - 1] = 0; // parity placeholder
+            } else {
+                placedArr[pos - 1] = dataBits[z];
+                z++;
+            }
+        }
+
+        // Calculate parity bits
+        for (int p = 1; p <= 8; p *= 2) {
+            int sum = 0;
+            for (int j = p; j <= 12; j++) {
+                if ((j & p) != 0) {
+                    sum += placedArr[j - 1];
+                }
+            }
+            placedArr[p - 1] = sum % 2; // EVEN parity
+        }
+
+        return placedArr;
     }
 
 }
