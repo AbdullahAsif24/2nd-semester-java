@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class ModeOfData {
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 2, 7,7,7 };
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 2 ,1,1,1,1 , 7,7,7,7,7};
 
         HashMap<Integer, Integer> m = new HashMap<>();
 
@@ -20,16 +20,17 @@ public class ModeOfData {
             }
         }
 
-        int largest = arr[0];
+        int largestval = m.get(arr[0]);
+        int largestkey = arr[0];
 
         for (int i : m.keySet()) {
-            if (largest < m.get(i)) {
-                largest = i;
+            if (largestval <= m.get(i)) {
+                largestval = m.get(i);
+                largestkey = i;
             }
         }
 
-        System.out.println(largest);
-
+        System.out.println(largestkey + " : "+ largestval);
     }
 
 }
