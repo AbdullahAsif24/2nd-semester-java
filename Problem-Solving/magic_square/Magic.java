@@ -18,8 +18,8 @@ public class Magic {
         // return 0;
         // }
 
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length; // 3
+        int n = grid[0].length; // 4
 
         // If grid is smaller than 3×3, return 0
         if (m < 3 || n < 3) {
@@ -29,14 +29,16 @@ public class Magic {
         int total = 0;
 
         // Correct generalized loop
-        for (int r = 0; r <= m - 3; r++) {
+        for (int r = 0; r <= m - 3; r++) { 
             for (int c = 0; c <= n - 3; c++) {
 
-                int[] abcArr = new int[9];
+                int[] abcArr = new int[9]; // {a,b,c,d,e,f,g,h,i}
 
+                
                 int counter = 0;
+
                 for (int i = r; i < r + 3; i++) {
-                    for (int j = c; j < c + 3; j++) {
+                    for (int j = c; j < c + 3; j++)  {
                         abcArr[counter] = grid[i][j];
                         counter++;
                     }   
@@ -51,7 +53,7 @@ public class Magic {
     }
 
     public static int magicChecker(int[] abcArr) {
-        if (abcArr[4] != 5) {
+        if (abcArr[4] != 5) {  // check e = 5
             return 0;
         }
 
@@ -86,6 +88,7 @@ public class Magic {
             return 0;
         }
 
+        // for diagonal
         if ((abcArr[0] + abcArr[4] + abcArr[8]) != 15) {
             return 0;
         }

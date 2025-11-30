@@ -31,27 +31,26 @@ class Tree{
     }
 
     public Node insertRec(Node root, int data ){
-         if (root == null) {
-            root = new Node(data);
-            
+        if (root == null) {
+            root = new Node(data); 
         }
-        else if (data<root.data) {
-            root.left = insertRec(root.left, data);
+        else if (data < root.data) {
+            root.left = insertRec(root.left, data); 
         }
-        else if (data>root.data) {
-            root.right = insertRec(root.right, data);
+        else if (data > root.data) {
+            root.right = insertRec(root.right, data);  
         }
 
-        return root;
+        return root; 
     }
 
     public void inOrder(){
-        inOrderRec(root);
+        inOrderRec(root); 
     }
 
     public void inOrderRec(Node root){
         if (root != null) {
-            inOrderRec(root.left);
+            inOrderRec(root.left); 
             System.out.println(root.data + "  ");
             inOrderRec(root.right);
         }
